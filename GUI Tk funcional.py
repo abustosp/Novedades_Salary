@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import os
 from tkinter import filedialog
+from tkinter.messagebox import showinfo
 
 #Obtener el directorio actual 
 directorio = os.getcwd()
@@ -66,6 +67,9 @@ class DiseñoGuiApp:
             #renombrar las columnas a 'Apellido' , 'Nombre' , 'Legajo' , 'Servicio' , 'Horas' , 'Horas Extra' , 'Nocturnos' , 'Feriados' , 'Susp' , 'Inasist' , 'L.A.R'
             Salary.columns = ['Apellido' , 'Nombre' , 'Legajo' , 'Servicio' , 'Horas' , 'Horas Extra' , 'Nocturnos' , 'Feriados' , 'Susp' , 'Inasist' , 'L.A.R']
 
+            # Filtrar las filas donde 'Legajo' es igual a NaN
+            Salary = Salary[Salary['Legajo'].notna()]
+
             #Rellenar NaN con ceros
             Salary = Salary.fillna(0)
 
@@ -105,6 +109,9 @@ class DiseñoGuiApp:
 
             #Reemplazar '/' por '-' en la variable 'Periodo'
             Periodo = Periodo.replace('/' , '-')
+            
+            # Mostrar un messagebox con el mensaje 'Archivo Procesado'
+            showinfo("Archivo Procesado", "Archivo Procesado")
 
             #crear carpeta 'Generados' si no existe
             if not os.path.exists('Generados'):

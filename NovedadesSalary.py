@@ -8,6 +8,9 @@ Salary = pd.read_excel("Base/Novedades.xlsx" , header = None)
 #renombrar las columnas a 'Apellido' , 'Nombre' , 'Legajo' , 'Servicio' , 'Horas' , 'Horas Extra' , 'Nocturnos' , 'Feriados' , 'Susp' , 'Inasist' , 'L.A.R'
 Salary.columns = ['Apellido' , 'Nombre' , 'Legajo' , 'Servicio' , 'Horas' , 'Horas Extra' , 'Nocturnos' , 'Feriados' , 'Susp' , 'Inasist' , 'L.A.R']
 
+# Filtrar las filas donde 'Legajo' es igual a NaN
+Salary = Salary[Salary['Legajo'].notna()]
+
 #Rellenar NaN con ceros
 Salary = Salary.fillna(0)
 
